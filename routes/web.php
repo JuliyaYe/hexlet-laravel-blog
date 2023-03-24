@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'hello, world!';
+    return view('welcome');
 });
 
-Route::get('/about', function () { return  view('about'); });
+Route::get('/about', [App\Http\Controllers\AboutController::class, 'pageAbout']);
+
+Route::get('/articles', function () {
+    $articles = App\Models\Article::all();
+    return view('articles', ['articles' => $articles]);
+});
