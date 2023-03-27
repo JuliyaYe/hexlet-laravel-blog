@@ -19,7 +19,5 @@ Route::get('/', function () {
 
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'pageAbout']);
 
-Route::get('/articles', function () {
-    $articles = App\Models\Article::all();
-    return view('articles', ['articles' => $articles]);
-});
+Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');;
+Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
